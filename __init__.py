@@ -2,7 +2,16 @@ import os
 from base64 import b64encode
 from sys import stdout
 
-def imgcat(data, inline=1, filename=''):
+def imgcat(data, width='auto', height='auto', preserveAspectRatio=False, inline=True, filename=''):
+    '''
+    The width and height are given as a number followed by a unit, or the word "auto".
+
+        N: N character cells.
+        Npx: N pixels.
+        N%: N percent of the session's width or height.
+        auto: The image's inherent size will be used to determine an appropriate dimension.
+    '''
+
     buf = bytes()
     enc = 'utf-8'
 
@@ -21,6 +30,9 @@ def imgcat(data, inline=1, filename=''):
 
     buf += b';size=%d' % len(data)
     buf += b';inline=%d' % int(inline)
+    buf += b';width=%s' % width.encode(enc)
+    buf += b';height=%s' % height.encode(enc)
+    buf += b';preserveAspectRatio=%d' % int(preserveAspectRatio)
     buf += b':'
     buf += b64encode(data)
 
