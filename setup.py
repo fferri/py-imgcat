@@ -6,5 +6,5 @@ setup(name='py-imgcat',
         url='https://github.com/fferri/py-imgcat',
         author='Federico Ferri',
         license='BSD-2-Clause',
-        packages=['py-imgcat'],
+        packages=['py_imgcat'],
         zip_safe=False)
